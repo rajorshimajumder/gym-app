@@ -1,4 +1,3 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_app_v1/drawer.dart';
 import 'package:gym_app_v1/routes.dart';

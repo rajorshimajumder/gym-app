@@ -16,12 +16,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Index(), routes: {
-      routes.profile: (context) => Profile(),
-      routes.index: (context) => Index(),
-      routes.notifications: (context) => Notifications(),
-      routes.progressChart: (context) => ProgressChart(),
-      routes.bmiChart: (context) => BMIChart(),
+    return MaterialApp(home: const Index(), routes: {
+      routes.profile: (context) => const Profile(),
+      routes.index: (context) => const Index(),
+      routes.notifications: (context) => const Notifications(),
+      routes.progressChart: (context) => const ProgressChart(),
+      routes.bmiChart: (context) => const BMIChart(),
     });
   }
 }

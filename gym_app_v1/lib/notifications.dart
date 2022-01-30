@@ -12,12 +12,14 @@ class Notifications extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Notifications'),
       ),
-      body: TimePicker(),
+      body: const TimePicker(),
     );
   }
 }
 
 class TimePicker extends StatefulWidget {
+  const TimePicker({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _TimePickerState();
@@ -34,7 +36,7 @@ class _TimePickerState extends State<TimePicker> {
         children: <Widget>[
           Container(
             margin: const EdgeInsets.all(20),
-            child: Text('When do you want to get a reminder?'),
+            child: const Text('When do you want to get a reminder?'),
           ),
           //const SizedBox(width: 100),
           Row(
@@ -44,7 +46,7 @@ class _TimePickerState extends State<TimePicker> {
                 onPressed: () {
                   _selectTime(context);
                 },
-                child: Text('Choose Time'),
+                child: const Text('Choose Time'),
               ),
               Text('${selectedTime.hour}:${selectedTime.minute}'),
             ],
