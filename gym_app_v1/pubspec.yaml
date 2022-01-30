@@ -30,6 +30,8 @@ dependencies:
   flutter:
     sdk: flutter
   fl_chart: ^0.35.0
+  flutter_local_notifications: ^5.0.0+1
+  google_fonts: ^2.2.0
   
   charts_flutter:
     git:
@@ -64,9 +66,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - welcome_image.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

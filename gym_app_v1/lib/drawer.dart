@@ -31,7 +31,7 @@ Widget createDrawer(BuildContext context) {
           },
         ),
         ListTile(
-          title: const Text('PRogress Chart'),
+          title: const Text('Progress Chart'),
           onTap: () {
             Navigator.pushReplacementNamed(context, routes.progressChart);
           },

@@ -25,7 +25,7 @@ class Profile extends StatelessWidget {
                   ])),
           Center(
               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: const <Widget>[
                 CircleAvatar(
                     radius: 100,

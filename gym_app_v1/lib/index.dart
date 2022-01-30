@@ -17,12 +17,19 @@ class Index extends StatelessWidget {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-              const Image(
-                image: NetworkImage(
-                    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'),
-                height: 200,
-                width: 200,
-              ),
+              const CircleAvatar(
+                  radius: 100,
+                  backgroundColor: Colors.grey,
+                  child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: ClipOval(
+                        child: Image(
+                          image: NetworkImage(
+                              'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'),
+                          height: 200,
+                          width: 200,
+                        ),
+                      ))),
               const Text('Name'),
               const Text('BMI'),
               const Text('Streak'),
