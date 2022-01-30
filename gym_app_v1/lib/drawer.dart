@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app_v1/index.dart';
-import 'package:gym_app_v1/profile.dart';
 import 'package:gym_app_v1/routes.dart';
 
 Widget createDrawer(BuildContext context) {

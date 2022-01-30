@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_app_v1/bmiChart.dart';
 import 'package:gym_app_v1/index.dart';
 import 'package:gym_app_v1/notifications.dart';
 import 'package:gym_app_v1/profile.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes.index: (context) => Index(),
       routes.notifications: (context) => Notifications(),
       routes.progressChart: (context) => ProgressChart(),
+      routes.bmiChart: (context) => BMIChart(),
     });
   }
 }
