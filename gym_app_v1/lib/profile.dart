@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app_v1/drawer.dart';
+import 'package:gym_app_v1/routes.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -16,7 +17,9 @@ class Profile extends StatelessWidget {
       body: Column(
         children: <Widget>[
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, routes.editForm);
+              },
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const <Widget>[
