@@ -1,9 +1,21 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym_app_v1/routes.dart';
+import 'package:http/http.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return WelcomeScreenState();
+  }
+}
+
+class WelcomeScreenState extends State<WelcomeScreen> {
+  String serverResponse = '';
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +40,31 @@ class WelcomeScreen extends StatelessWidget {
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80)))),
               onPressed: () {
-                Navigator.pushReplacementNamed(context, routes.index);
+                //Navigator.pushReplacementNamed(context, routes.index);
+                _makeGetRequest();
               },
               child: Text(
                 'Create Your profile',
                 style: GoogleFonts.acme(fontSize: 20),
               )),
+          Padding(
+              padding: const EdgeInsets.all(8.0), child: Text(serverResponse)),
           const FractionallySizedBox(
             widthFactor: 1,
           ),
         ]));
+  }
+
+  _makeGetRequest() async {
+    final url = Uri.parse(_localhost());
+    Response response =
+        await get(url, headers: {"Access-Control_Allow_Origin": "*"});
+    setState(() {
+      serverResponse = response.body;
+    });
+  }
+
+  String _localhost() {
+    return 'http://127.0.0.1:3000';
   }
 }
