@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym_app_v1/routes.dart';
 import 'package:http/http.dart';
+import 'notifications_service.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -42,6 +43,8 @@ class WelcomeScreenState extends State<WelcomeScreen> {
               onPressed: () {
                 //Navigator.pushReplacementNamed(context, routes.index);
                 _makeGetRequest();
+                NotificationService service = NotificationService();
+                service.showTimedNotifications();
               },
               child: Text(
                 'Create Your profile',

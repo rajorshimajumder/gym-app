@@ -8,7 +8,11 @@ import 'package:gym_app_v1/progressChart.dart';
 import 'package:gym_app_v1/routes.dart';
 import 'package:gym_app_v1/welcomeScreen.dart';
 
-void main() {
+import 'notifications_service.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await NotificationService().init(); //
   runApp(const MyApp());
 }
 

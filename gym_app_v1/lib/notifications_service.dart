@@ -1,4 +1,6 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class NotificationService {
   //Singleton pattern
@@ -13,17 +15,6 @@ class NotificationService {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  final AndroidInitializationSettings initializationSettingsAndroid =
-      const AndroidInitializationSettings('app_icon');
-
-  //Initialization Settings for iOS devices
-  final IOSInitializationSettings initializationSettingsIOS =
-      const IOSInitializationSettings(
-    requestSoundPermission: false,
-    requestBadgePermission: false,
-    requestAlertPermission: false,
-  );
-
   void requestIOSPermissions(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) {
     flutterLocalNotificationsPlugin
@@ -36,6 +27,65 @@ class NotificationService {
         );
   }
 
-  //final InitializationSettings initializationSettings = InitializationSettings(
-  // android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+  Future<void> init() async {
+    //Initialization Settings for Android
+    final AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('app_icon');
+
+    //Initialization Settings for iOS
+    final IOSInitializationSettings initializationSettingsIOS =
+        IOSInitializationSettings(
+      requestSoundPermission: false,
+      requestBadgePermission: false,
+      requestAlertPermission: false,
+    );
+
+    //InitializationSettings for initializing settings for both platforms (Android & iOS)
+    final InitializationSettings initializationSettings =
+        InitializationSettings(
+            android: initializationSettingsAndroid,
+            iOS: initializationSettingsIOS);
+
+//initialized timezone package here
+    tz.initializeTimeZones();
+
+    Future selectNotification(String? payload) async {}
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: selectNotification);
+  }
+
+  Future<void> showNotifications() async {
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'Notification Title',
+      'This is the Notification Body',
+      platformChannelSpecifics,
+      payload: 'Notification Payload',
+    );
+  }
+
+  Future<void> showTimedNotifications() async {
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+        0,
+        "notification title",
+        "notification body",
+        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
+        platformChannelSpecifics,
+        androidAllowWhileIdle: true,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime);
+  }
 }
+
+const AndroidNotificationDetails androidPlatformChannelSpecifics =
+    AndroidNotificationDetails(
+  'channel ID',
+  'channel name',
+  'channel description',
+  playSound: true,
+  priority: Priority.high,
+  importance: Importance.high,
+);
+
+const NotificationDetails platformChannelSpecifics =
+    NotificationDetails(android: androidPlatformChannelSpecifics);
