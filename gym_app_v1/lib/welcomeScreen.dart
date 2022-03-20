@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym_app_v1/routes.dart';
@@ -41,8 +39,8 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80)))),
               onPressed: () {
-                //Navigator.pushReplacementNamed(context, routes.index);
-                _makeGetRequest();
+                // Navigator.pushReplacementNamed(context, routes.index);
+                // _makeGetRequest();
                 NotificationService service = NotificationService();
                 service.showTimedNotifications();
               },

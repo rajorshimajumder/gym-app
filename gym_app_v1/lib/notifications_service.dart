@@ -52,6 +52,17 @@ class NotificationService {
     Future selectNotification(String? payload) async {}
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: selectNotification);
+
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+        0,
+        "notification title",
+        "notification body",
+        tz.TZDateTime.local(2022, 3, 19, 16, 03, 0, 0, 0),
+        platformChannelSpecifics,
+        androidAllowWhileIdle: true,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+        matchDateTimeComponents: DateTimeComponents.time);
   }
 
   Future<void> showNotifications() async {
@@ -69,11 +80,12 @@ class NotificationService {
         0,
         "notification title",
         "notification body",
-        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
+        tz.TZDateTime.local(2022, 3, 19, 15, 55, 0, 0, 0),
         platformChannelSpecifics,
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime);
+            UILocalNotificationDateInterpretation.absoluteTime,
+        matchDateTimeComponents: DateTimeComponents.time);
   }
 }
 
