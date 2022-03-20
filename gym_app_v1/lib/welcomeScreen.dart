@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gym_app_v1/routes.dart';
 import 'package:http/http.dart';
-import 'notifications_service.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -26,6 +25,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
           Text(
             'Welcome to Gym App',
             style: GoogleFonts.muli(fontSize: 40),
+            textAlign: TextAlign.center,
           ),
           Image.asset(
             'welcome_image.jpg',
@@ -39,10 +39,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80)))),
               onPressed: () {
-                // Navigator.pushReplacementNamed(context, routes.index);
-                // _makeGetRequest();
-                NotificationService service = NotificationService();
-                service.showTimedNotifications();
+                Navigator.pushReplacementNamed(context, routes.index);
               },
               child: Text(
                 'Create Your profile',

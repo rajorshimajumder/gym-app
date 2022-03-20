@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gym_app_v1/drawer.dart';
+import 'package:gym_app_v1/notifications_service.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 class Notifications extends StatelessWidget {
   const Notifications({Key? key}) : super(key: key);
@@ -50,7 +53,16 @@ class _TimePickerState extends State<TimePicker> {
               ),
               Text('${selectedTime.hour}:${selectedTime.minute}'),
             ],
-          )
+          ),
+          ElevatedButton(
+              onPressed: () {
+                NotificationService service = NotificationService();
+                service.showTimedNotifications(setScheduledTime(selectedTime));
+              },
+              child: Text(
+                'Save Reminder',
+                style: GoogleFonts.acme(fontSize: 20),
+              )),
         ],
       ),
     );
@@ -66,5 +78,13 @@ class _TimePickerState extends State<TimePicker> {
         selectedTime = timeOfDay;
       });
     }
+  }
+
+  tz.TZDateTime setScheduledTime(TimeOfDay selectedTime) {
+    DateTime dateTime = DateTime(DateTime.now().year, DateTime.now().month,
+            DateTime.now().day, selectedTime.hour, selectedTime.minute, 0, 0, 0)
+        .toUtc();
+    return tz.TZDateTime(tz.local, dateTime.year, dateTime.month, dateTime.day,
+        dateTime.hour, dateTime.minute, 0, 0, 0);
   }
 }

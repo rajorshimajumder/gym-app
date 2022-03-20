@@ -52,17 +52,6 @@ class NotificationService {
     Future selectNotification(String? payload) async {}
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: selectNotification);
-
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-        0,
-        "notification title",
-        "notification body",
-        tz.TZDateTime.local(2022, 3, 19, 16, 03, 0, 0, 0),
-        platformChannelSpecifics,
-        androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-        matchDateTimeComponents: DateTimeComponents.time);
   }
 
   Future<void> showNotifications() async {
@@ -75,12 +64,12 @@ class NotificationService {
     );
   }
 
-  Future<void> showTimedNotifications() async {
+  Future<void> showTimedNotifications(tz.TZDateTime scheduledTime) async {
     await flutterLocalNotificationsPlugin.zonedSchedule(
         0,
-        "notification title",
-        "notification body",
-        tz.TZDateTime.local(2022, 3, 19, 15, 55, 0, 0, 0),
+        "Reminder",
+        "It's time to go to the Gym!!!!",
+        scheduledTime,
         platformChannelSpecifics,
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
